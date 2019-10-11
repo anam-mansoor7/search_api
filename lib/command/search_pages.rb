@@ -7,13 +7,13 @@ class Command::SearchPages
   step :sort_pages_by_frequency_count
 
   def validate_query(input)
-    return Failure('query field is required') unless input[:query]
+    return Failure('query field is required') unless input[:query].present?
 
     Success(input)
   end
 
   def parse_query(input)
-    input[:parsed_query] = input[:query].scan(/\b[a-z]{3,16}\b/)
+    input[:parsed_query] = input[:query].downcase.scan(/\b[a-z]{3,16}\b/)
     Success(input)
   end
 
