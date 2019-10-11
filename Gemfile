@@ -16,6 +16,7 @@ gem 'puma', '~> 3.11'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'mechanize', '~> 2.7', '>= 2.7.6'
 gem 'dry-transaction'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem 'pry'

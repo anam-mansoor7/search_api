@@ -24,8 +24,8 @@ class Command::SearchPages
 
   def sort_pages_by_frequency_count(input)
     pages = Page.joins(:terms).where(terms: {id: input[:terms].pluck(:id)})
-    input[:pages] = pages.select('pages.id, pages.title, pages.link, sum(terms.count) as term_count')
-      .group('pages.id').order('term_count DESC')
+    input[:pages] = pages.select('pages.id, pages.title, pages.link, sum(terms.count) as relevance')
+      .group('pages.id').order('relevance DESC')
     Success(input)
   end
 end
