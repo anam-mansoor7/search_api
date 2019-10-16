@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Command::SearchPages do
+RSpec.describe Command::SearchPagesByTermCount do
   let(:service) { described_class.new }
   let(:do_call) { service.call(query: query) }
   let(:page1) { create(:page) }

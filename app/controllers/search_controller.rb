@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def pages
-    Command::SearchPages.new.call(query: params[:query]) do |result|
+    Command::SearchPagesByTermCount.new.call(query: params[:query]) do |result|
       result.success do |success|
         render json: success[:pages], each_serializer: PageSerializer
       end

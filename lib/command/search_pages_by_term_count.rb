@@ -1,4 +1,4 @@
-class Command::SearchPages
+class Command::SearchPagesByTermCount
   include Dry::Transaction
 
   step :validate_query
