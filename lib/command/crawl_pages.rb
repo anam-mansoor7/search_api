@@ -14,6 +14,7 @@ class Command::CrawlPages
 
   def parse_linked_pages(input)
     doc = Nokogiri::HTML(input[:main_page].body)
+    lemmatizer = Lemmatizer.new
 
     doc.css('table.wikitable.sortable tbody tr td a').each do |row|
       title = row[:title]
@@ -26,7 +27,10 @@ class Command::CrawlPages
       term_count_hash[title] = 100
       doc_text = next_web_page.css('div#bodyContent').text
       page = Page.find_or_create_by(link: "#{BASE_URL}#{link}", title: title)
-      doc_text.downcase.scan(WORD_REGEX) {|word| term_count_hash[word] += 1 }
+      doc_text.downcase.scan(WORD_REGEX) do |word|
+        word = lemmatizer.lemma(word)
+        term_count_hash[word] += 1
+      end
       persist_term_count(page, term_count_hash)
     end
     Success(input)
