@@ -5,7 +5,7 @@ RSpec.describe Command::SearchPagesByTermCount do
   let(:do_call) { service.call(query: query) }
   let(:page1) { create(:page) }
   let(:page2) { create(:page) }
-  let(:query) { 'chocolates ice' }
+  let(:query) { 'I like chocolates and ice' }
 
     describe "#call" do
       context "when the results exists" do

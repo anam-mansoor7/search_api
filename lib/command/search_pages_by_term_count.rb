@@ -1,7 +1,7 @@
 class Command::SearchPagesByTermCount
   include Dry::Transaction
 
-  MAX_QUERY_LENGTH = 1.freeze
+  MAX_QUERY_SIZE = 2000.freeze
 
   step :validate_query
   step :parse_query
@@ -11,7 +11,7 @@ class Command::SearchPagesByTermCount
 
   def validate_query(input)
     return Failure('query field is required') unless input[:query].present?
-    return Failure("Length of query should be less than #{MAX_QUERY_LENGTH}") if input[:query].length > MAX_QUERY_LENGTH
+    return Failure("Length of query should be less than #{MAX_QUERY_SIZE}") if input[:query].length > MAX_QUERY_SIZE
     Success(input)
   end
 

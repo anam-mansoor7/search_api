@@ -5,7 +5,7 @@ RSpec.describe SearchController, type: :controller do
     let(:page) { create(:page) }
     let(:page2) { create(:page) }
 
-    before { create(:term, name: 'chocolates', count: 1, page: page) }
+    before { create(:term, name: 'chocolate', count: 1, page: page) }
     it "returns a success response" do
       get :pages, params: { query: 'chocolates' }
       expect(response.status).to eq(200)
