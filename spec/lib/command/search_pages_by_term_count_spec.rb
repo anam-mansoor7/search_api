@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe Command::SearchPages do
+RSpec.describe Command::SearchPagesByTermCount do
   let(:service) { described_class.new }
   let(:do_call) { service.call(query: query) }
   let(:page1) { create(:page) }
   let(:page2) { create(:page) }
-  let(:query) { 'chocolates ice' }
+  let(:query) { 'I like chocolates and ice' }
 
     describe "#call" do
       context "when the results exists" do
@@ -21,15 +21,7 @@ RSpec.describe Command::SearchPages do
 
         it "returns the pages ordered by relevance" do
           pages = do_call.success[:pages]
-          expect(pages).to eq([page1, page2])
-        end
-
-        it "calculates the relevance correctly" do
-          pages = do_call.success[:pages]
-          aggregate_failures do
-            expect(pages[0].relevance).to eq(0.9855637508055958)
-            expect(pages[1].relevance).to eq(0.5801764227838352)
-          end
+          expect(pages).to eq([page2, page1])
         end
       end
 
