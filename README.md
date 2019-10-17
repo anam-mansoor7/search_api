@@ -36,7 +36,8 @@ term_count for Document 2 will be 3
 
 result will be [document1, document2, document 3]
 
-for search by tf–idf similiarity matrix , the result will return document 2 first and assign the same relevance to document 1 and document 3
+for search by `tf–idf similiarity matrix` , the result will return `Document 2` first and assign the same relevance to `Document 1` and `Document 3` which is much more accurate
+then searching by term count
 
 # Rake task to consume wikipedia pages
 
@@ -64,10 +65,10 @@ The search is quite fast as there is an index on the name field of the terms tab
 
 # Limitations
 
-- We have to run the rake task again, everytime something is changed on Wikipedia.
-- The rake task is quite slow 
-- The rake task can use some cleaning up
-- Clean up the rake task 
+- To fetch the latest changes from wikipedia, rake task needs to be executed again
+- Rake task is not removing terms from the databse if its removed from wikipedia page
+- Rake task is quite slow 
+- Rake task can use some cleaning up
 - Add specs for the rake task
 
 # Getting started
@@ -87,3 +88,11 @@ The search is quite fast as there is an index on the name field of the terms tab
 * How to run the test suite
 
 `rspec spec/`
+
+# Dependencies
+* mechanize
+* dry-transaction
+* lemmatizer
+* tf-idf-similarity
+* nmatrix
+
