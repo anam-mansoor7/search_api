@@ -19,6 +19,7 @@ gem 'dry-transaction'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'lemmatizer'
 gem 'tf-idf-similarity'
+gem 'nmatrix'
 
 group :development, :test do
   gem 'pry'

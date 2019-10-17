@@ -21,7 +21,15 @@ RSpec.describe Command::SearchPages do
 
         it "returns the pages ordered by relevance" do
           pages = do_call.success[:pages]
-          expect(pages).to eq([page2, page1])
+          expect(pages).to eq([page1, page2])
+        end
+
+        it "calculates the relevance correctly" do
+          pages = do_call.success[:pages]
+          aggregate_failures do
+            expect(pages[0].relevance).to eq(0.9855637508055958)
+            expect(pages[1].relevance).to eq(0.5801764227838352)
+          end
         end
       end
 

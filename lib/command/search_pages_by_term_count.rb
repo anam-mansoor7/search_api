@@ -12,6 +12,7 @@ class Command::SearchPagesByTermCount
   def validate_query(input)
     return Failure('query field is required') unless input[:query].present?
     return Failure("Length of query should be less than #{MAX_QUERY_SIZE}") if input[:query].length > MAX_QUERY_SIZE
+
     Success(input)
   end
 
