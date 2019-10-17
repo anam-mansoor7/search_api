@@ -2,7 +2,6 @@ class Command::CrawlPages
   include Dry::Transaction
 
   BASE_URL = 'https://en.wikipedia.org'.freeze
-  WORD_REGEX = /\b[a-z]{3,16}\b/.freeze
   PAGE_TITLE_WEIGHT = 100.freeze
 
   step :get_main_page
@@ -50,6 +49,6 @@ class Command::CrawlPages
 
   def fetch_tokens(text)
     stop_words = File.read(Rails.root.join('lib', 'stopwords', 'stopwords.txt'))
-    text.downcase.scan(WORD_REGEX) - stop_words.split(",")
+    text.downcase.scan(Term::WORD_REGEX) - stop_words.split(",")
   end
 end
