@@ -217,6 +217,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    tf-idf-similarity (0.1.6)
+      unicode_utils (~> 1.4)
     thor (0.20.3)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
@@ -224,6 +226,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
+    unicode_utils (1.4.0)
     webrobots (0.1.2)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
@@ -249,6 +252,7 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
+  tf-idf-similarity
   tzinfo-data
 
 RUBY VERSION
