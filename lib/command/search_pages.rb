@@ -75,7 +75,7 @@ class Command::SearchPages
       input[:pages] << page
     end
 
-    input[:pages].sort_by(&:relevance)
+    input[:pages] = input[:pages].sort_by(&:relevance).reverse
     Success(input)
   end
 
