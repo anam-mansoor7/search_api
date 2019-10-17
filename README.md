@@ -15,8 +15,7 @@ It has the following components:
 `/search/pages?query='query'`
 
 This endpoint uses the TFIDF vector to find similarity between documents. 
-Please read https://en.wikipedia.org/wiki/Tf–idf to get an indepth understanding of the concepts behind this.
-
+Please read https://en.wikipedia.org/wiki/Tf–idf for more details.
 
 
 # Search using term frequency count 
