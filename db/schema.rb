@@ -15,9 +15,6 @@ ActiveRecord::Schema.define(version: 2019_10_30_042355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-# Could not dump table "languages" because of following StandardError
-#   Unknown type 'regconfig' for column 'language'
-
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.string "link"
