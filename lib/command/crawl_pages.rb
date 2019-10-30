@@ -24,9 +24,10 @@ class Command::CrawlPages
       link = row[:href]
       next_web_page = input[:main_page].link_with(href: link).click
       term_count_hash[title] = PAGE_TITLE_WEIGHT
-      doc_text = next_web_page.css('div#bodyContent').text
+      doc_text = clean_content(next_web_page.css('div#bodyContent').text)
 
       page = Page.find_or_create_by(link: "#{BASE_URL}#{link}", title: title)
+      page.update(doc_text: doc_text)
 
       fetch_tokens(doc_text).each do |token|
         token = lemmatizer.lemma(token)
@@ -50,5 +51,13 @@ class Command::CrawlPages
   def fetch_tokens(text)
     stop_words = File.read(Rails.root.join('lib', 'stopwords', 'stopwords.txt'))
     text.downcase.scan(Term::WORD_REGEX) - stop_words.split(",")
+  end
+
+  def clean_content(raw_html)
+    html = raw_html.encode('UTF-8', invalid: :replace, undef: :replace, replace: '', universal_newline: true).gsub(/\P{ASCII}/, '')
+    parser = Nokogiri::HTML(html, nil, Encoding::UTF_8.to_s)
+    parser.xpath('//script')&.remove
+    parser.xpath('//style')&.remove
+    parser.xpath('//text()').map(&:text).join(' ').squish
   end
 end
