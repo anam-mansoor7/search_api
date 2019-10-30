@@ -15,9 +15,11 @@ class Command::SearchPagesByTsVector
 
   def search_documents(input)
     input[:pages] = Page
-      .select("id, link, ts_rank_cd(
-        doc_text_vector,
-        plainto_tsquery('#{input[:query]}')) AS relevance"
+      .select("id, link,
+        ts_rank_cd(
+          doc_text_vector,
+          plainto_tsquery('#{input[:query]}')
+        ) AS relevance"
       )
       .where("doc_text_vector @@ plainto_tsquery(:query)", query: input[:query])
       .order("relevance DESC")
