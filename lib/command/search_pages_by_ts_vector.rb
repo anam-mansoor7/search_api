@@ -20,6 +20,7 @@ class Command::SearchPagesByTsVector
         plainto_tsquery('#{input[:query]}')) AS relevance"
       )
       .where("doc_text_vector @@ plainto_tsquery(:query)", query: input[:query])
+      .order("relevance DESC")
     Success(input)
   end
 end
