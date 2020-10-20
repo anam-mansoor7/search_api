@@ -1,14 +1,14 @@
 # README
 
-The app downloads information from every country page listed under “Sovereign states and dependencies by population” found here: https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population and implements two
+The app downloads information from every country page listed under “Sovereign states and dependencies by population” found here: https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population and implements three
 endpoints to search that information. It also adds a rake task that crawls the wikipedia page and stores the information in the database.
 
 It has the following components:
 
 *  Search using tf–idf similiarity matrix  
 *  Search using term frequency count
+*  Add search using gin index
 *  Rake task to consume wikipedia pages
-
 
 # Search using tf–idf similiarity matrix 
 
@@ -38,6 +38,12 @@ result will be [document1, document2, document 3]
 
 for search by `tf–idf similiarity matrix` , the result will return `Document 2` first and assign the same relevance to `Document 1` and `Document 3` which is much more accurate
 then searching by term count
+
+# Search using gin index
+add search using gin index (https://www.postgresql.org/docs/9.5/gin-intro.html)
+
+`/search/search_pages_by_ts_vector?query='query'`
+
 
 # Rake task to consume wikipedia pages
 
