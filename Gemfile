@@ -14,7 +14,7 @@ gem 'puma', '~> 3.11'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-gem 'mechanize', '~> 2.7', '>= 2.7.6'
+gem 'mechanize', '~> 2.8'
 gem 'dry-transaction'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'lemmatizer'
